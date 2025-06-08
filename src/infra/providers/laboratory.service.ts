@@ -23,4 +23,21 @@ export class LaboratoryService
   async read(params: Partial<LaboratoryParams>): Promise<LaboratoryEntity[]> {
     return await this.laboratoryModel.find({ ...params });
   }
+
+  async update(
+    id: string,
+    params: Partial<LaboratoryParams>,
+  ): Promise<LaboratoryEntity> {
+    const updatedLaboratory = await this.laboratoryModel.findOneAndUpdate(
+      { _id: id['id'] },
+      { ...params },
+      { new: true },
+    );
+
+    if (!updatedLaboratory) {
+      throw new Error('Failed to update the laboratory.');
+    }
+
+    return updatedLaboratory;
+  }
 }

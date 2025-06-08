@@ -9,6 +9,7 @@ import { LaboratoryService } from '@/infra/providers/laboratory.service';
 import { CreateLaboratoryUseCase } from '@/domain/usecases/laboratory/create-laboratory.usecase';
 import { LaboratoryController } from '@/presentation/controllers/laboratory.controller';
 import { ReadLaboratoryUseCase } from '@/domain/usecases/laboratory/read-laboratory.usecase';
+import { UpdateLaboratoryUseCase } from '@/domain/usecases/laboratory/update-laboratory.usecase';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ReadLaboratoryUseCase } from '@/domain/usecases/laboratory/read-laborat
     },
     CreateLaboratoryUseCase,
     ReadLaboratoryUseCase,
+    UpdateLaboratoryUseCase,
   ],
   controllers: [LaboratoryController],
   exports: [ILaboratoryRepository],
