@@ -6,6 +6,8 @@ import {
 } from '@/infra/repositories/mongo/schemas/laboratory.schema';
 import { ILaboratoryRepository } from '@/domain/repositories/abstract-laboratory.repository';
 import { LaboratoryService } from '@/infra/providers/laboratory.service';
+import { CreateLaboratoryUseCase } from '@/domain/usecases/laboratory/create-laboratory.usecase';
+import { LaboratoryController } from '@/presentation/controllers/laboratory.controller';
 
 @Module({
   imports: [
@@ -21,7 +23,9 @@ import { LaboratoryService } from '@/infra/providers/laboratory.service';
       provide: ILaboratoryRepository,
       useClass: LaboratoryService,
     },
+    CreateLaboratoryUseCase,
   ],
+  controllers: [LaboratoryController],
   exports: [ILaboratoryRepository],
 })
 export class LaboratoryModule {}
