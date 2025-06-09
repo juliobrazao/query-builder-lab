@@ -1,0 +1,3 @@
+import { CreateLaboratoryResponseDTO } from './create-laboratory.response.dto';
+
+export class DeleteLaboratoryResponseDTO extends CreateLaboratoryResponseDTO {}

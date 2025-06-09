@@ -2,7 +2,9 @@ import { CreateLaboratoryUseCase } from '@/domain/usecases/laboratory/create-lab
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Patch,
   Post,
   Query,
@@ -17,6 +19,7 @@ import { ReadLaboratoryResponseDTO } from '../dtos/laboratory/read-laboratory.re
 import { UpdateLaboratoryResponseDTO } from '../dtos/laboratory/update-laboratory.response.dto';
 import { UpdateLaboratoryUseCase } from '@/domain/usecases/laboratory/update-laboratory.usecase';
 import { UpdateLaboratoryRequestDTO } from '../dtos/laboratory/update-laboratory.request.dto';
+import { DeleteLaboratoryUseCase } from '@/domain/usecases/laboratory/delete-laboratory.usecase';
 
 @Controller('laboratory')
 export class LaboratoryController {
@@ -24,6 +27,7 @@ export class LaboratoryController {
     private readonly createLaboratoryUseCase: CreateLaboratoryUseCase,
     private readonly readLaboratoryUseCase: ReadLaboratoryUseCase,
     private readonly updateLaboratoryUseCase: UpdateLaboratoryUseCase,
+    private readonly deleteLaboratoryUseCase: DeleteLaboratoryUseCase,
   ) {}
 
   @Post('create')
@@ -57,6 +61,15 @@ export class LaboratoryController {
   ): Promise<UpdateLaboratoryResponseDTO> {
     try {
       return await this.updateLaboratoryUseCase.execute(id, laboratoryParams);
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  @Delete('delete/:id')
+  async delete(@Param('id') id: string) {
+    try {
+      return await this.deleteLaboratoryUseCase.execute(id);
     } catch (err) {
       throw new Error(err);
     }

@@ -10,6 +10,7 @@ import { CreateLaboratoryUseCase } from '@/domain/usecases/laboratory/create-lab
 import { LaboratoryController } from '@/presentation/controllers/laboratory.controller';
 import { ReadLaboratoryUseCase } from '@/domain/usecases/laboratory/read-laboratory.usecase';
 import { UpdateLaboratoryUseCase } from '@/domain/usecases/laboratory/update-laboratory.usecase';
+import { DeleteLaboratoryUseCase } from '@/domain/usecases/laboratory/delete-laboratory.usecase';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UpdateLaboratoryUseCase } from '@/domain/usecases/laboratory/update-lab
     CreateLaboratoryUseCase,
     ReadLaboratoryUseCase,
     UpdateLaboratoryUseCase,
+    DeleteLaboratoryUseCase,
   ],
   controllers: [LaboratoryController],
   exports: [ILaboratoryRepository],

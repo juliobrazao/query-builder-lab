@@ -40,4 +40,16 @@ export class LaboratoryService
 
     return updatedLaboratory;
   }
+
+  async delete(id: string): Promise<LaboratoryEntity> {
+    const laboratoryToDelete = await this.laboratoryModel.findByIdAndDelete({
+      _id: id,
+    });
+
+    if (!laboratoryToDelete) {
+      throw new Error('Cannot find this laboratory!');
+    }
+
+    return laboratoryToDelete;
+  }
 }
