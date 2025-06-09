@@ -29,7 +29,7 @@ export class LaboratoryService
     params: Partial<LaboratoryParams>,
   ): Promise<LaboratoryEntity> {
     const updatedLaboratory = await this.laboratoryModel.findOneAndUpdate(
-      { _id: id['id'] },
+      { _id: id['id'] }, 
       { ...params },
       { new: true },
     );

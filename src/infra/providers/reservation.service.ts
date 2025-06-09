@@ -18,7 +18,7 @@ export class ReservationService
     }
 
     async delete(id: string): Promise<ReservationEntity> {
-        let reservationToDelete = await this.reservationModel.findByIdAndDelete({
+        const reservationToDelete = await this.reservationModel.findByIdAndDelete({
             _id: id
         });
 
