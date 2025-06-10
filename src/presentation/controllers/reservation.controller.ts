@@ -1,7 +1,22 @@
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Query,
+    UsePipes,
+    ValidationPipe
+} from "@nestjs/common";
 import { CreateReservationUseCase } from "@/domain/usecases/reservation/create-reservation.usecase";
 import { DeleteReservationUseCase } from "@/domain/usecases/reservation/delete-reservation.usecase";
 import { ReadReservationUseCase } from "@/domain/usecases/reservation/read-reservation.usecase";
-import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { ReservationCreateRequestDTO } from "../dtos/reservation/reservation-create.request.dto";
+import { ReservationReadRequestDTO } from "../dtos/reservation/reservation-read.request.dto";
+import { ReservationReadResponseDTO } from "../dtos/reservation/reservation-read.response.dto";
+import { ReservationCreateResponseDTO } from "../dtos/reservation/reservation-create.response.dto";
+import { ReservationDeleteResponseDTO } from "../dtos/reservation/reservation-delete.response.dto";
 
 @Controller('reservation')
 export class ReservationController {
@@ -12,12 +27,34 @@ export class ReservationController {
     ) { }
 
     @Get('read')
-    async read() { }
+    async read(
+        @Query() readParams: ReservationReadRequestDTO
+    ): Promise<ReservationReadResponseDTO[]> {
+        try {
+            return this.readReservation.execute({ ...readParams })
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
 
     @Post('create')
-    async create() { }
+    @UsePipes(new ValidationPipe({ transform: true }))
+    async create(
+        @Body() reservationParams: ReservationCreateRequestDTO
+    ): Promise<ReservationCreateResponseDTO> {
+        try {
+            return await this.createReservation.execute({ ...reservationParams })
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
 
     @Delete('delete/:id')
-    async delete(@Param('id') id: string) { }
-
+    async delete(@Param('id') id: string): Promise<ReservationDeleteResponseDTO> {
+        try {
+            return this.deleteReservation.execute(id)
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
 }

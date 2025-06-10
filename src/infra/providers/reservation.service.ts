@@ -4,6 +4,7 @@ import { ReservationParams } from "@/domain/shared/reservation/reservation.param
 import { Reservation, ReservationDocument } from "../repositories/mongo/schemas/reservation.schema";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+import { BadRequestException } from "@nestjs/common";
 
 export class ReservationService
     implements IReservationRepository<ReservationEntity, ReservationParams> {
@@ -23,7 +24,7 @@ export class ReservationService
         });
 
         if (!reservationToDelete) {
-            throw new Error('Cannot find this Reservation!');
+            throw new BadRequestException('Cannot find this Reservation!');
         }
 
         return reservationToDelete;
