@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import { ILaboratoryRepository } from '@/domain/repositories/abstract-laboratory.repository';
 import { LaboratoryEntity } from '@/domain/entities/laboratory.entity';
 import { LaboratoryParams } from '@/domain/shared/laboratory.params';
+import { BadRequestException } from '@nestjs/common';
 
 export class LaboratoryService
   implements ILaboratoryRepository<LaboratoryEntity, LaboratoryParams>
@@ -47,7 +48,7 @@ export class LaboratoryService
     });
 
     if (!laboratoryToDelete) {
-      throw new Error('Cannot find this laboratory!');
+      throw new BadRequestException('Cannot find this laboratory!');
     }
 
     return laboratoryToDelete;
