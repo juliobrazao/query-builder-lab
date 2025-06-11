@@ -30,6 +30,8 @@ export class CreateLaboratoryRequestDTO {
 
   @ApiProperty({
     description: 'List of desks contained on a laboratory',
+    type: [Desk],
+    example: [{ capacity: 2, type: 'wood' }],
   })
   deskList: Desk[];
 

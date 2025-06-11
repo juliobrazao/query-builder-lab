@@ -7,6 +7,7 @@ import { Model } from 'mongoose';
 import { ILaboratoryRepository } from '@/domain/repositories/abstract-laboratory.repository';
 import { LaboratoryEntity } from '@/domain/entities/laboratory.entity';
 import { LaboratoryParams } from '@/domain/shared/laboratory.params';
+import { readLaboratoryPipeline } from '../repositories/mongo/pipelines/read-laboratory.pipeline';
 
 export class LaboratoryService
   implements ILaboratoryRepository<LaboratoryEntity, LaboratoryParams>
@@ -21,7 +22,13 @@ export class LaboratoryService
   }
 
   async read(params: Partial<LaboratoryParams>): Promise<LaboratoryEntity[]> {
-    return await this.laboratoryModel.find({ ...params });
+    const pipeline = readLaboratoryPipeline(params);
+
+    if (!pipeline.length) {
+      return await this.laboratoryModel.find();
+    }
+
+    return await this.laboratoryModel.aggregate(pipeline);
   }
 
   async update(
