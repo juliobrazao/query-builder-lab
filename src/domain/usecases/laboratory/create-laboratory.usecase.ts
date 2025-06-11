@@ -17,6 +17,7 @@ export class CreateLaboratoryUseCase {
       name: params.name,
       location: params.location,
       capacity: params.capacity,
+      deskList: params.deskList,
       isAvailable: params.isAvailable,
       createdAt: +new Date(),
     };
