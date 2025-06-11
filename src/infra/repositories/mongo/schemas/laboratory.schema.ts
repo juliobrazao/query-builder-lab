@@ -3,6 +3,11 @@ import { Document } from 'mongoose';
 
 export type LaboratoryDocument = Laboratory & Document;
 
+class Desk {
+  capacity: 1 | 2 | 4;
+  type: 'wood' | 'metal';
+}
+
 @Schema({ collection: 'laboratories' })
 export class Laboratory {
   @Prop()
@@ -14,10 +19,13 @@ export class Laboratory {
   @Prop()
   capacity: number;
 
-  @Prop()
+  @Prop({ name: 'desk_list' })
+  deskList: Desk[];
+
+  @Prop({ name: 'is_available' })
   isAvailable: boolean;
 
-  @Prop()
+  @Prop({ name: 'created_at' })
   createdAt: number;
 }
 
