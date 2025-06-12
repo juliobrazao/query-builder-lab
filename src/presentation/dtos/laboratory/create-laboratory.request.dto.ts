@@ -1,6 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsInt, IsString } from 'class-validator';
 
+class Desk {
+  capacity: 1 | 2 | 4;
+  type: 'wood' | 'metal';
+}
+
 export class CreateLaboratoryRequestDTO {
   @ApiProperty({
     description: 'Name for laboratory',
@@ -22,6 +27,13 @@ export class CreateLaboratoryRequestDTO {
   })
   @IsInt({ message: 'You must set capacity for lab.' })
   capacity: number;
+
+  @ApiProperty({
+    description: 'List of desks contained on a laboratory',
+    type: [Desk],
+    example: [{ capacity: 2, type: 'wood' }],
+  })
+  deskList: Desk[];
 
   @ApiProperty({
     description: 'Boolean to define if laboratory is available or not.',
