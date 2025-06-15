@@ -7,11 +7,8 @@ import { Model } from 'mongoose';
 import { ILaboratoryRepository } from '@/domain/repositories/abstract-laboratory.repository';
 import { LaboratoryEntity } from '@/domain/entities/laboratory.entity';
 import { LaboratoryParams } from '@/domain/shared/laboratory.params';
-<<<<<<< HEAD
-import { BadRequestException } from '@nestjs/common';
-=======
 import { readLaboratoryPipeline } from '../repositories/mongo/pipelines/read-laboratory.pipeline';
->>>>>>> main
+import { BadRequestException } from '@nestjs/common';
 
 export class LaboratoryService
   implements ILaboratoryRepository<LaboratoryEntity, LaboratoryParams>
