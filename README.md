@@ -4,10 +4,10 @@
 
 # Instructions to Run
 
-1 - Clone repository;
-2 - Create manually a .env file with MONGO_URI variable and a valid connection string to mongo;
-3 - Add permissions to run 'start.sh' file;
-4 - Run command './start.sh' and let the "magic" begins;
+- Clone repository;
+- Create manually a .env file with MONGO_URI variable and a valid connection string to mongo;
+- Add permissions to run 'start.sh' file;
+- Run command './start.sh' and let the "magic" begins;
 
 # Dependencies
 
