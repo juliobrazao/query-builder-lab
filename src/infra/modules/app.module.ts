@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongoModule } from './mongo.module';
 
 @Module({
-  imports: [MongoModule],
+  imports: [
+    MongoModule
+  ],
 })
-export class AppModule {}
+export class AppModule { }
