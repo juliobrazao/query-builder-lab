@@ -8,6 +8,7 @@ import { ILaboratoryRepository } from '@/domain/repositories/abstract-laboratory
 import { LaboratoryEntity } from '@/domain/entities/laboratory.entity';
 import { LaboratoryParams } from '@/domain/shared/laboratory.params';
 import { readLaboratoryPipeline } from '../repositories/mongo/pipelines/read-laboratory.pipeline';
+import { BadRequestException } from '@nestjs/common';
 
 export class LaboratoryService
   implements ILaboratoryRepository<LaboratoryEntity, LaboratoryParams>
@@ -36,7 +37,7 @@ export class LaboratoryService
     params: Partial<LaboratoryParams>,
   ): Promise<LaboratoryEntity> {
     const updatedLaboratory = await this.laboratoryModel.findOneAndUpdate(
-      { _id: id['id'] },
+      { _id: id['id'] }, 
       { ...params },
       { new: true },
     );
@@ -54,7 +55,7 @@ export class LaboratoryService
     });
 
     if (!laboratoryToDelete) {
-      throw new Error('Cannot find this laboratory!');
+      throw new BadRequestException('Cannot find this laboratory!');
     }
 
     return laboratoryToDelete;

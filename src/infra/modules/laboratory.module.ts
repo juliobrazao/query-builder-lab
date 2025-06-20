@@ -34,4 +34,4 @@ import { DeleteLaboratoryUseCase } from '@/domain/usecases/laboratory/delete-lab
   controllers: [LaboratoryController],
   exports: [ILaboratoryRepository],
 })
-export class LaboratoryModule {}
+export class LaboratoryModule { }
